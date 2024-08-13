@@ -1,0 +1,29 @@
+<div class="search-container">
+  <h1>Buscar Productos</h1>
+  <form (ngSubmit)="searchProducts()">
+    <input 
+      type="text" 
+      [(ngModel)]="query"
+      name="query"
+      placeholder="Buscar productos..."
+      required
+    />
+    <button type="submit">Buscar</button>
+  </form>
+  
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <ul *ngIf="products.length">
+    <li *ngFor="let product of products">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p class="price">${{ product.price.toFixed(2) }}</p>
+    </li>
+  </ul>
+
+  <div *ngIf="!products.length && !error">
+    Cargando productos...
+  </div>
+</div>
